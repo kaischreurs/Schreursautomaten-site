@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>Schreurs-Automaten | Full vending service in Zuid-Holland en Utrecht</title>
+  <meta name="description" content="Schreurs-Automaten verzorgt complete vending oplossingen voor bedrijven in Zuid-Holland en Utrecht. Gratis full service, verhuur en gezond assortiment. 24/7 toegankelijk en contactloos met pin." />
+  <meta name="theme-color" content="#0a1426" />
+  <link rel="icon" type="image/png" href="assets/img/logo.png" />
+  <link rel="preload" as="image" href="assets/img/ravi-portrait.jpg" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ═════════════ ICONS (SVG sprite) ═════════════ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4a2 2 0 0 1 2-2h2.5a1 1 0 0 1 1 .8l1 4a1 1 0 0 1-.3 1L9.7 9.3a14 14 0 0 0 5 5l1.6-1.6a1 1 0 0 1 1-.2l4 1a1 1 0 0 1 .7 1V17a2 2 0 0 1-2 2A16 16 0 0 1 5 4z"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20 12l-8 8-9-9V3h8l9 9z"/><circle cx="7.5" cy="7.5" r="1.5"/></symbol>
+      <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z"/><path d="M19 17l.8 2.2L22 20l-2.2.8L19 23l-.8-2.2L16 20l2.2-.8L19 17z"/></symbol>
+      <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M21 3s-2 12-9 14C5 18 3 11 3 11s5 1 9-3c4-4 9-5 9-5z"/><path d="M3 21c2-6 6-9 11-11"/></symbol>
+      <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.5 3a4 4 0 0 1 5 5L9 18.5l-4 .5.5-4L14.5 3z"/></symbol>
+      <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 3L3 5v16l6-2 6 2 6-2V3l-6 2-6-2z"/><path d="M9 3v16"/><path d="M15 5v16"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+      <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><path d="M7 15h3"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></symbol>
+      <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="i-shop" viewBox="0 0 24 24"><path d="M3 9l1.5-5h15L21 9"/><path d="M4 9h16v11H4z"/><path d="M9 13h6"/></symbol>
+      <symbol id="i-water" viewBox="0 0 24 24"><path d="M12 3s7 8 7 13a7 7 0 1 1-14 0c0-5 7-13 7-13z"/></symbol>
+      <symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="M3 9v6M6 7v10M18 7v10M21 9v6M6 12h12"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 1-5 4.8 1.3 7-6.3-3.4-6.3 3.4 1.3-7-5-4.8 7-1z"/></symbol>
+      <symbol id="i-quote" viewBox="0 0 24 24"><path d="M7 7h4v4H7v3a4 4 0 0 0 4 4M14 7h4v4h-4v3a4 4 0 0 0 4 4"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M6 11l6 6 6-6M5 21h14"/></symbol>
+      <symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h8l5 5v13H7z"/><path d="M15 3v5h5"/><path d="M9 13h7M9 17h7M9 9h3"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ───────────────── HEADER ───────────────── -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand" aria-label="Schreurs-Automaten, naar boven">
+        <img src="assets/img/logo.png" alt="Schreurs-Automaten logo" class="brand-logo" width="48" height="48" />
+        <span class="brand-name">Schreurs<span class="brand-name-dash">-</span>Automaten</span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Menu openen" aria-expanded="false" aria-controls="primaryNav">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primaryNav" aria-label="Hoofdmenu">
+        <a href="#verhaal">Het verhaal</a>
+        <a href="#pricing">Diensten</a>
+        <a href="#cases">Locaties</a>
+        <a href="#gezond">Gezond</a>
+        <a href="schreurs-automaten-brochure.pdf" class="nav-brochure" download>
+          <svg><use href="#i-download"/></svg>Brochure
+        </a>
+        <a href="tel:+31651844785" class="nav-call">
+          <svg><use href="#i-phone"/></svg>06 51 84 47 85
+        </a>
+        <a href="#contact" class="nav-cta">
+          Vrijblijvend advies
+          <svg width="14" height="14"><use href="#i-arrow-right"/></svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ───────────────── HERO met formulier ───────────────── -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+
+      <div class="hero-card">
+        <img src="assets/img/logo-white-transparent.png" alt="" aria-hidden="true" class="hero-logo" width="130" height="130" />
+
+        <h1 class="hero-title">
+          <span class="line">Full vending service</span>
+          <span class="line">voor uw locatie</span>
+        </h1>
+
+        <p class="hero-lead">
+          Wij plaatsen, vullen en onderhouden vending automaten voor bedrijven, kantoren, sportscholen en publieke locaties. Een assortiment dat past bij uw bezoekers, 24/7 beschikbaar en altijd vers aangevuld.
+        </p>
+
+        <ul class="hero-bullets">
+          <li><svg><use href="#i-check"/></svg> Gratis full service mogelijk op geschikte locaties</li>
+          <li><svg><use href="#i-check"/></svg> Plaatsing, aanvulling en onderhoud volledig door ons</li>
+          <li><svg><use href="#i-check"/></svg> Persoonlijk contact, direct met de eigenaar</li>
+        </ul>
+
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-primary">
+            Plan een gesprek met Ravi
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a href="tel:+31651844785" class="btn btn-ghost">
+            <svg class="btn-icon"><use href="#i-phone"/></svg>
+            06 51 84 47 85
+          </a>
+        </div>
+
+        <div class="hero-badges">
+          <span class="hero-badge"><svg><use href="#i-clock"/></svg> 24/7 toegankelijk</span>
+          <span class="hero-badge"><svg><use href="#i-card"/></svg> Contactloos pinnen</span>
+          <span class="hero-badge"><svg><use href="#i-map"/></svg> Zuid-Holland &amp; Utrecht</span>
+        </div>
+
+        <p class="hero-microcopy">
+          <svg><use href="#i-bolt"/></svg> Meestal binnen één werkdag reactie. Geheel vrijblijvend.
+        </p>
+
+        <a href="schreurs-automaten-brochure.pdf" class="hero-brochure-link" download>
+          <svg><use href="#i-download"/></svg>
+          Liever eerst lezen? Download de brochure
+        </a>
+      </div>
+
+      <aside class="hero-form" aria-labelledby="leadFormTitle">
+        <form class="lead-form glass-light" id="leadForm"
+              action="mailto:Schreursautomaat@gmail.com"
+              method="POST"
+              enctype="text/plain"
+              novalidate>
+          <div class="lead-form-head">
+            <span class="lead-form-tag">Vrijblijvend</span>
+            <h2 id="leadFormTitle" class="lead-form-title">Vraag een vending oplossing aan</h2>
+            <p class="lead-form-sub">Vertel kort wat u zoekt, dan neem ik (Ravi) persoonlijk contact op.</p>
+          </div>
+
+          <div class="field">
+            <label for="lf-name">Naam</label>
+            <input id="lf-name" name="Naam" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="lf-email">E-mail</label>
+              <input id="lf-email" name="Email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="lf-phone">Telefoon</label>
+              <input id="lf-phone" name="Telefoon" type="tel" autocomplete="tel" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="lf-interest">Waar bent u in geïnteresseerd?</label>
+            <select id="lf-interest" name="Interesse">
+              <option value="Full vending service">Gratis full vending service</option>
+              <option value="Verhuur">Verhuur van vending machines</option>
+              <option value="Tijdelijke verhuur / event">Tijdelijke verhuur of event</option>
+              <option value="Gezond assortiment">Gezond assortiment</option>
+              <option value="Sportschool / fitness">Sportschool of fitness</option>
+              <option value="Anders / advies">Anders, vrijblijvend advies</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="lf-message">Korte toelichting (optioneel)</label>
+            <textarea id="lf-message" name="Bericht" rows="3" placeholder="Locatie, aantal medewerkers of bezoekers, gewenst assortiment."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Verstuur aanvraag
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+          </button>
+
+          <p class="form-note">
+            <svg><use href="#i-check"/></svg> Wij gebruiken uw gegevens uitsluitend voor deze aanvraag.
+          </p>
+        </form>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- ───────────────── PROOF STRIP ───────────────── -->
+  <section class="proof-strip" aria-label="Belangrijkste cijfers">
+    <div class="container proof-inner">
+      <div class="proof-item">
+        <span class="proof-num">20+</span>
+        <span class="proof-label">Actieve automaten</span>
+      </div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-item">
+        <span class="proof-num">24/7</span>
+        <span class="proof-label">Toegankelijk en contactloos</span>
+      </div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-item">
+        <span class="proof-num">100%</span>
+        <span class="proof-label">Eigen beheer en service</span>
+      </div>
+      <div class="proof-divider" aria-hidden="true"></div>
+      <div class="proof-item">
+        <span class="proof-num">2024</span>
+        <span class="proof-label">Vanaf oktober actief</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── HET VERHAAL ───────────────── -->
+  <section class="section section-light" id="verhaal">
+    <div class="container two-col">
+      <div class="col-text">
+        <span class="eyebrow eyebrow-dark"><svg class="eyebrow-icon"><use href="#i-user"/></svg> Het verhaal</span>
+        <h2 class="section-title">
+          <span class="line">Jong ondernemer met</span>
+          <span class="line">een scherp oog voor locatie</span>
+        </h2>
+        <span class="title-accent" aria-hidden="true"></span>
+        <p>
+          Schreurs-Automaten is opgericht in oktober 2024 door Ravi Schreurs (20) uit Mijdrecht. Wat begon met één frisdrankautomaat bij een autowasstraat, draait nu met een team van twee FTE en automaten verspreid over de regio.
+        </p>
+        <p>
+          De rode draad: assortiment dat klopt met de locatie. Bij een medisch centrum landt vitaminewater en haverrepen, bij een tankstation lopen frisdrank, snacks en zelfs autoparfum en tissues. Bij de autowasstraat verkopen vooral RedBull blikjes, elke dag opnieuw bijvullen.
+        </p>
+        <p>
+          Achter de schermen draait een eigen systeem voor voorraadbeheer met slimme notificaties, zodat de juiste producten op tijd op de juiste plek liggen. Geen handmatige rondes, geen lege schappen.
+        </p>
+
+        <figure class="quote-card">
+          <svg class="quote-mark" aria-hidden="true"><use href="#i-quote"/></svg>
+          <blockquote>
+            Ik probeer het assortiment goed af te stemmen op de locatie.
+          </blockquote>
+          <figcaption>Ravi Schreurs, eigenaar Schreurs-Automaten</figcaption>
+        </figure>
+
+        <div class="section-cta">
+          <a href="#contact" class="btn btn-secondary">
+            Bespreek uw locatie
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+          </a>
+          <a href="tel:+31651844785" class="btn btn-outline-dark">
+            <svg class="btn-icon"><use href="#i-phone"/></svg>
+            Bel met Ravi
+          </a>
+        </div>
+      </div>
+
+      <div class="col-media">
+        <figure class="frame">
+          <img src="assets/img/ravi-portrait.jpg" alt="Ravi Schreurs naast een Schreurs-Automaten frisdrankautomaat" loading="lazy" />
+          <figcaption>Ravi Schreurs (20), Mijdrecht</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── PRICING ───────────────── -->
+  <section class="section section-dark" id="pricing">
+    <div class="container">
+      <header class="section-head section-head-center">
+        <span class="eyebrow"><svg class="eyebrow-icon"><use href="#i-tag"/></svg> Diensten en prijzen</span>
+        <h2 class="section-title">
+          <span class="line">Drie manieren om met ons</span>
+          <span class="line">samen te werken</span>
+        </h2>
+        <span class="title-accent" aria-hidden="true"></span>
+        <p class="section-lead">
+          Elke locatie is anders. Wij stemmen de samenwerking, het assortiment en de looptijd af op uw situatie. Prijs altijd op aanvraag, zonder verplichtingen.
+        </p>
+      </header>
+
+      <div class="pricing-grid">
+
+        <article class="pricing-card">
+          <div class="pricing-card-media">
+            <img src="assets/img/automaat-snacks-large.jpg" alt="Combi snack- en drankautomaat voor full service" loading="lazy" />
+          </div>
+          <div class="pricing-card-head">
+            <span class="pricing-tag">Populair</span>
+            <h3 class="pricing-title">Full vending service</h3>
+            <p class="pricing-sub">Wij plaatsen en beheren de automaat volledig. U heeft nergens omkijken naar.</p>
+            <div class="pricing-price">
+              <span class="pricing-price-main">Gratis</span>
+              <span class="pricing-price-note">op geschikte locaties</span>
+            </div>
+          </div>
+          <ul class="pricing-list">
+            <li><svg><use href="#i-check"/></svg> Plaatsing van de automaat</li>
+            <li><svg><use href="#i-check"/></svg> Aanvulling van producten</li>
+            <li><svg><use href="#i-check"/></svg> Slim voorraadbeheer met notificaties</li>
+            <li><svg><use href="#i-check"/></svg> Onderhoud en schoonmaak</li>
+            <li><svg><use href="#i-check"/></svg> 24/7 storingsservice</li>
+            <li><svg><use href="#i-check"/></svg> Assortiment op maat van de locatie</li>
+            <li><svg><use href="#i-check"/></svg> Contactloos pinnen standaard</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-block pricing-cta">
+            Vraag full service aan
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+          </a>
+        </article>
+
+        <article class="pricing-card pricing-card-featured">
+          <div class="pricing-card-media">
+            <img src="assets/img/automaat-outdoor.jpg" alt="Vending automaat geschikt voor verhuur" loading="lazy" />
+          </div>
+          <div class="pricing-card-head">
+            <span class="pricing-tag pricing-tag-featured">Verhuur</span>
+            <h3 class="pricing-title">Verhuur op maat</h3>
+            <p class="pricing-sub">U huurt de automaat en verdient zelf aan het assortiment, wij regelen de techniek.</p>
+            <div class="pricing-price">
+              <span class="pricing-price-main">In overleg</span>
+              <span class="pricing-price-note">huur per maand</span>
+            </div>
+          </div>
+          <ul class="pricing-list">
+            <li><svg><use href="#i-check"/></svg> Plaatsing en installatie</li>
+            <li><svg><use href="#i-check"/></svg> Instellen en kalibreren</li>
+            <li><svg><use href="#i-check"/></svg> Storingsservice inbegrepen</li>
+            <li><svg><use href="#i-check"/></svg> Eigen assortiment (ook non-food)</li>
+            <li><svg><use href="#i-check"/></svg> Voorraadnotificaties beschikbaar</li>
+            <li><svg><use href="#i-check"/></svg> Flexibele looptijd</li>
+            <li><svg><use href="#i-check"/></svg> Optioneel: aanvulling door ons</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-block pricing-cta">
+            Vraag verhuur aan
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+          </a>
+        </article>
+
+        <article class="pricing-card">
+          <div class="pricing-card-media">
+            <img src="assets/img/automaat-snack-drink.jpg" alt="Compacte snack- en drankautomaat voor tijdelijke verhuur" loading="lazy" />
+          </div>
+          <div class="pricing-card-head">
+            <span class="pricing-tag">Tijdelijk</span>
+            <h3 class="pricing-title">Event en korte termijn</h3>
+            <p class="pricing-sub">Een automaat voor een evenement, beurs, schoolperiode of project. Snel geregeld.</p>
+            <div class="pricing-price">
+              <span class="pricing-price-main">In overleg</span>
+              <span class="pricing-price-note">per event of week</span>
+            </div>
+          </div>
+          <ul class="pricing-list">
+            <li><svg><use href="#i-check"/></svg> Plaatsing inbegrepen</li>
+            <li><svg><use href="#i-check"/></svg> Maatwerk per event</li>
+            <li><svg><use href="#i-check"/></svg> Storingsservice</li>
+            <li><svg><use href="#i-check"/></svg> Aanvulling in overleg</li>
+            <li><svg><use href="#i-check"/></svg> Snel beschikbaar</li>
+            <li><svg><use href="#i-check"/></svg> Geen langlopend contract</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary btn-block pricing-cta">
+            Bespreek uw event
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+          </a>
+        </article>
+
+      </div>
+
+      <!-- Vergelijkingstabel -->
+      <div class="pricing-compare">
+        <h3 class="pricing-compare-title">Volledige vergelijking</h3>
+        <div class="pricing-compare-scroll">
+          <table class="pricing-table" aria-label="Vergelijking van diensten">
+            <thead>
+              <tr>
+                <th scope="col">Wat krijgt u</th>
+                <th scope="col">Full service</th>
+                <th scope="col">Verhuur</th>
+                <th scope="col">Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Plaatsing en installatie</th>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+              </tr>
+              <tr>
+                <th scope="row">Aanvulling van producten</th>
+                <td>Wij doen het</td>
+                <td>U doet het zelf</td>
+                <td>In overleg</td>
+              </tr>
+              <tr>
+                <th scope="row">Onderhoud en schoonmaak</th>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td>Optioneel</td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+              </tr>
+              <tr>
+                <th scope="row">Storingsservice</th>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+              </tr>
+              <tr>
+                <th scope="row">Assortimentkeuze</th>
+                <td>Wij stellen samen</td>
+                <td>Uw eigen mix</td>
+                <td>Maatwerk per event</td>
+              </tr>
+              <tr>
+                <th scope="row">Non-food artikelen</th>
+                <td>Op verzoek</td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td>In overleg</td>
+              </tr>
+              <tr>
+                <th scope="row">Contactloos pinnen</th>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+                <td><svg class="cell-yes"><use href="#i-check"/></svg></td>
+              </tr>
+              <tr>
+                <th scope="row">Looptijd</th>
+                <td>Langere termijn</td>
+                <td>Flexibel</td>
+                <td>Dagen tot weken</td>
+              </tr>
+              <tr>
+                <th scope="row">Investering</th>
+                <td>Gratis op geschikte loc.</td>
+                <td>Huur per maand</td>
+                <td>Per event of week</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="section-cta-center pricing-final-cta">
+        <a href="#contact" class="btn btn-primary">
+          Niet zeker welke past? Plan een gesprek
+          <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+        </a>
+        <a href="schreurs-automaten-brochure.pdf" class="btn btn-ghost" download>
+          <svg class="btn-icon"><use href="#i-download"/></svg>
+          Download brochure
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── BROCHURE STRIP ───────────────── -->
+  <section class="brochure-strip" id="brochure">
+    <div class="container brochure-inner">
+      <div class="brochure-text">
+        <span class="eyebrow eyebrow-dark"><svg class="eyebrow-icon"><use href="#i-doc"/></svg> Brochure</span>
+        <h2 class="brochure-title">Alles op een rij in één PDF</h2>
+        <p>Onze diensten, het assortiment, voorbeelden van locaties en contactgegevens, overzichtelijk te downloaden om intern te delen.</p>
+      </div>
+      <div class="brochure-cta">
+        <a href="schreurs-automaten-brochure.pdf" class="btn btn-primary" download>
+          <svg class="btn-icon"><use href="#i-download"/></svg>
+          Download brochure (PDF)
+        </a>
+        <a href="#contact" class="btn btn-outline-dark">
+          Vraag op maat
+          <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── CASES / LOCATIES ───────────────── -->
+  <section class="section section-light" id="cases">
+    <div class="container">
+      <header class="section-head section-head-center">
+        <span class="eyebrow eyebrow-dark"><svg class="eyebrow-icon"><use href="#i-pin"/></svg> Locaties in de praktijk</span>
+        <h2 class="section-title">
+          <span class="line">Drie locaties,</span>
+          <span class="line">drie assortimenten</span>
+        </h2>
+        <span class="title-accent" aria-hidden="true"></span>
+        <p class="section-lead">
+          Elke automaat krijgt een assortiment dat past bij de bezoekers van die plek. Een paar voorbeelden uit Mijdrecht en omgeving.
+        </p>
+      </header>
+
+      <div class="cases-grid">
+
+        <article class="case-card glass-light">
+          <div class="case-media">
+            <img src="assets/img/automaat-redbull.jpg" alt="Automaat met blikjes RedBull en frisdrank" loading="lazy" />
+            <span class="case-tag"><svg><use href="#i-bolt"/></svg> Energie</span>
+          </div>
+          <div class="case-body">
+            <span class="case-loc">Autowasstraat, Mijdrecht</span>
+            <h3>Snel en koud, vooral RedBull</h3>
+            <p>De eerste plaatsing van Schreurs-Automaten. Hier vliegen de blikjes RedBull eruit, dagelijks bijvullen is regel. Plan: een tweede automaat ernaast, met alleen RedBull.</p>
+          </div>
+        </article>
+
+        <article class="case-card glass-light">
+          <div class="case-media">
+            <img src="assets/img/automaat-drinks-vendo.jpg" alt="Automaat met vitaminewater en gezondere snacks" loading="lazy" />
+            <span class="case-tag"><svg><use href="#i-leaf"/></svg> Gezond</span>
+          </div>
+          <div class="case-body">
+            <span class="case-loc">Hofland Medisch Centrum</span>
+            <h3>Gezondere keuze voor patiënten</h3>
+            <p>Bij een medisch centrum past een ander assortiment. Hier staan vitaminewater, proteïne- en haverrepen en andere verantwoorde opties op de eerste rij.</p>
+          </div>
+        </article>
+
+        <article class="case-card glass-light">
+          <div class="case-media">
+            <img src="assets/img/automaat-snacks-large.jpg" alt="Automaat bij tankstation met breed assortiment" loading="lazy" />
+            <span class="case-tag"><svg><use href="#i-shop"/></svg> 24/7</span>
+          </div>
+          <div class="case-body">
+            <span class="case-loc">Tankstation Van Nieuwkerk/Haan, Bozenhoven</span>
+            <h3>Onbemand pompen, automaat ernaast</h3>
+            <p>Toen de shop ging sluiten omdat de pompen onbemand werden, kwam er een automaat naast met gekoelde dranken, snacks en non-food zoals autoparfum en tissues. 24/7 beschikbaar, alleen pinnen.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <figure class="big-quote">
+        <svg class="quote-mark" aria-hidden="true"><use href="#i-quote"/></svg>
+        <blockquote>
+          Dat heeft ontzettend goed uitgepakt. Er staat nu een mooie automaat met een breed assortiment voor bezoekers van het tankstation, 24/7 beschikbaar.
+        </blockquote>
+        <figcaption>Ravi over de plaatsing bij het tankstation</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ───────────────── GEZOND ASSORTIMENT ───────────────── -->
+  <section class="section section-dark" id="gezond">
+    <div class="container">
+      <header class="section-head section-head-center">
+        <span class="eyebrow"><svg class="eyebrow-icon"><use href="#i-leaf"/></svg> Gezond assortiment</span>
+        <h2 class="section-title">
+          <span class="line">Meer dan alleen</span>
+          <span class="line">snacks en frisdrank</span>
+        </h2>
+        <span class="title-accent" aria-hidden="true"></span>
+        <p class="section-lead">
+          Naast het reguliere vending assortiment bouwen wij een uitgebreid gezonder aanbod. Momenteel met focus op fitness en sportscholen, samen met partners ontwikkelen wij producten en sportsnacks specifiek voor automaten.
+        </p>
+      </header>
+
+      <div class="healthy-grid">
+        <article class="healthy-card glass">
+          <div class="healthy-media">
+            <img src="assets/img/automaat-drinks-vendo.jpg" alt="Automaat met flessen vitaminewater en sportdranken" loading="lazy" />
+            <span class="healthy-media-tag">Hydratatie</span>
+          </div>
+          <div class="healthy-body">
+            <h3>Vitamine- &amp; kokoswater</h3>
+            <p>Verfrissend, hydraterend en zonder onnodige toevoegingen. Voor na een vergadering, training of dienst.</p>
+          </div>
+        </article>
+
+        <article class="healthy-card glass">
+          <div class="healthy-media">
+            <img src="assets/img/automaat-snacks-large.jpg" alt="Automaat met eiwitrepen en gezondere snacks" loading="lazy" />
+            <span class="healthy-media-tag">Energie</span>
+          </div>
+          <div class="healthy-body">
+            <h3>Proteïne shakes &amp; eiwitrepen</h3>
+            <p>Energie voor onderweg of een snelle boost na het sporten. Geschikt voor de actieve werkvloer.</p>
+          </div>
+        </article>
+
+        <article class="healthy-card glass">
+          <div class="healthy-media">
+            <img src="assets/img/automaat-drinks-1.jpg" alt="Schap met suikervrije en verantwoorde dranken" loading="lazy" />
+            <span class="healthy-media-tag">Bewust</span>
+          </div>
+          <div class="healthy-body">
+            <h3>Suikervrij &amp; verantwoord</h3>
+            <p>Suikervrije dranken en verantwoorde snacks voor wie bewust kiest, zonder in te leveren op smaak.</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="healthy-foot">
+        Denk daarnaast aan haverrepen, kokoswater, sportdranken en op maat gemaakte combinaties per locatie.
+      </p>
+
+      <div class="section-cta-center">
+        <a href="#contact" class="btn btn-primary">
+          Stel een gezond assortiment samen
+          <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── WAAROM ───────────────── -->
+  <section class="section section-light section-why" id="waarom">
+    <div class="container">
+      <header class="section-head section-head-center">
+        <span class="eyebrow eyebrow-dark"><svg class="eyebrow-icon"><use href="#i-sparkle"/></svg> Waarom Schreurs-Automaten</span>
+        <h2 class="section-title">
+          <span class="line">Zes redenen waarom bedrijven</span>
+          <span class="line">voor ons kiezen</span>
+        </h2>
+        <span class="title-accent" aria-hidden="true"></span>
+      </header>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <span class="icon-wrap" aria-hidden="true"><svg><use href="#i-bolt"/></svg></span>
+          <h3>Persoonlijke en snelle service</h3>
+          <p>Korte lijnen, direct contact met de eigenaar zelf. Geen callcenters of wachttijden.</p>
+        </div>
+        <div class="why-card">
+          <span class="icon-wrap" aria-hidden="true"><svg><use href="#i-tag"/></svg></span>
+          <h3>Gratis full vending service</h3>
+          <p>Wij plaatsen, vullen en onderhouden de automaat kosteloos bij geschikte locaties.</p>
+        </div>
+        <div class="why-card">
+          <span class="icon-wrap" aria-hidden="true"><svg><use href="#i-sparkle"/></svg></span>
+          <h3>Slim voorraadbeheer</h3>
+          <p>Eigen systeem met notificaties: producten worden bijgevuld voor de schappen leeg zijn.</p>
+        </div>
+        <div class="why-card">
+          <span class="icon-wrap" aria-hidden="true"><svg><use href="#i-leaf"/></svg></span>
+          <h3>Gezonde vending opties</h3>
+          <p>Vitaliteit op de werkvloer met suikervrije dranken, eiwitrepen en meer.</p>
+        </div>
+        <div class="why-card">
+          <span class="icon-wrap" aria-hidden="true"><svg><use href="#i-tool"/></svg></span>
+          <h3>Betrouwbare storingsservice</h3>
+          <p>Een storing? Wij staan paraat. Snelle oplossing, geen gedoe voor uw organisatie.</p>
+        </div>
+        <div class="why-card">
+          <span class="icon-wrap" aria-hidden="true"><svg><use href="#i-map"/></svg></span>
+          <h3>Actief in Zuid-Holland &amp; Utrecht</h3>
+          <p>Flexibele oplossingen voor elk bedrijf. Wij denken ook mee buiten de regio.</p>
+        </div>
+      </div>
+
+      <div class="section-cta-center">
+        <a href="#contact" class="btn btn-primary">
+          Vraag een vrijblijvende offerte
+          <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── CONTACT (compact) ───────────────── -->
+  <section class="section section-dark contact-strip" id="contact">
+    <div class="container contact-inner">
+      <div class="contact-text-block">
+        <span class="eyebrow"><svg class="eyebrow-icon"><use href="#i-mail"/></svg> Contact</span>
+        <h2 class="section-title">
+          <span class="line">Klaar voor een</span>
+          <span class="line">vending oplossing?</span>
+        </h2>
+        <span class="title-accent" aria-hidden="true"></span>
+        <p>
+          Vul het formulier bovenaan in, of pak direct contact op. Wij denken graag mee, geheel vrijblijvend.
+        </p>
+
+        <ul class="contact-list">
+          <li>
+            <span class="icon-wrap icon-wrap-dark" aria-hidden="true"><svg><use href="#i-phone"/></svg></span>
+            <div class="contact-text">
+              <span class="contact-label">Telefoon</span>
+              <a href="tel:+31651844785" class="contact-value">06 51 84 47 85</a>
+            </div>
+          </li>
+          <li>
+            <span class="icon-wrap icon-wrap-dark" aria-hidden="true"><svg><use href="#i-mail"/></svg></span>
+            <div class="contact-text">
+              <span class="contact-label">E-mail</span>
+              <a href="mailto:Schreursautomaat@gmail.com" class="contact-value">Schreursautomaat@gmail.com</a>
+            </div>
+          </li>
+          <li>
+            <span class="icon-wrap icon-wrap-dark" aria-hidden="true"><svg><use href="#i-pin"/></svg></span>
+            <div class="contact-text">
+              <span class="contact-label">Regio</span>
+              <span class="contact-value">Zuid-Holland &amp; Utrecht</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="contact-cta-row">
+          <a href="#hero" class="btn btn-primary">
+            <svg class="btn-icon"><use href="#i-arrow-right"/></svg>
+            Naar het formulier
+          </a>
+          <a href="tel:+31651844785" class="btn btn-ghost">
+            <svg class="btn-icon"><use href="#i-phone"/></svg>
+            Bel direct
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────────── FOOTER ───────────────── -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/img/logo.png" alt="Schreurs-Automaten logo" width="44" height="44" />
+        <div>
+          <div class="footer-name">Schreurs-Automaten</div>
+          <div class="footer-tag">Full vending service in Zuid-Holland &amp; Utrecht</div>
+        </div>
+      </div>
+
+      <div class="footer-contact">
+        <a href="tel:+31651844785">06 51 84 47 85</a>
+        <a href="mailto:Schreursautomaat@gmail.com">Schreursautomaat@gmail.com</a>
+      </div>
+
+      <div class="footer-meta">
+        © <span id="year">2026</span> Schreurs-Automaten. Alle rechten voorbehouden.
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="algemene-voorwaarden.html">Algemene voorwaarden</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="schreurs-automaten-brochure.pdf" download>Brochure</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky mobile contact bar -->
+  <div class="mobile-call-bar" aria-label="Snelle contactopties">
+    <a href="tel:+31651844785" class="btn btn-primary">
+      <svg class="btn-icon"><use href="#i-phone"/></svg>
+      Bel direct
+    </a>
+    <a href="#hero" class="btn btn-secondary">
+      <svg class="btn-icon"><use href="#i-mail"/></svg>
+      Aanvraag
+    </a>
+  </div>
+
+  <a href="#top" class="to-top" aria-label="Terug naar boven">↑</a>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
