@@ -166,7 +166,8 @@ h1, h2, h3, h4 { font-family: var(--font-sans); color: var(--ink); font-weight: 
 .section-cta-center { display: flex; justify-content: center; margin-top: 36px; }
 
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 2.5vw, 28px); align-items: stretch; }
-.pricing-card { position: relative; background: #fff; color: var(--ink); border-radius: var(--radius-lg); padding: 0 0 10px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--glass-shadow); transition: transform 240ms ease, box-shadow 240ms ease; overflow: hidden; }
+.pricing-card { position: relative; background: #fff; color: var(--ink); border-radius: var(--radius-lg); padding: 0 0 10px; display: flex; flex-direction: column; gap: 8px; box-shadow: var(--glass-shadow); transition: transform 240ms ease, box-shadow 240ms ease; overflow: hidden; opacity: 1 !important; transform: none !important; }
+.pricing-card, .pricing-card * { opacity: 1 !important; }
 .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--glass-shadow-strong); }
 .pricing-card-featured { background: linear-gradient(180deg, #fff, #fff8f1); border: 2px solid var(--accent); box-shadow: 0 30px 60px -20px var(--accent-glow), var(--glass-shadow); transform: translateY(-6px); }
 .pricing-card-featured:hover { transform: translateY(-10px); }
@@ -354,6 +355,4 @@ h1, h2, h3, h4 { font-family: var(--font-sans); color: var(--ink); font-weight: 
 }
 @media (max-width: 380px) {
   .brand-name { font-size: 0.94rem; }
-  .brand-logo { width: 52px; height: 52px; }
-}
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { an
+  .bran
